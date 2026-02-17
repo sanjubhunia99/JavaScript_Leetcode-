@@ -1,0 +1,20 @@
+var readBinaryWatch = function(turnedOn) {
+    const result = [];
+    const countBits = (num) => {
+        let count = 0;
+        while (num > 0) {
+            count += num & 1;
+            num >>= 1;
+        }
+        return count;
+    };
+    for (let hour = 0; hour < 12; hour++) {
+        for (let minute = 0; minute < 60; minute++) {
+            if (countBits(hour) + countBits(minute) === turnedOn) {
+                const time = `${hour}:${minute.toString().padStart(2, '0')}`;
+                result.push(time);
+            }
+        }
+    }
+    return result;
+};
